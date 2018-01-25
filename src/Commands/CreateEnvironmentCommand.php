@@ -11,7 +11,7 @@ class CreateEnvironmentCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'env:create {name}';
+    protected $signature = 'env:create {name} {--overwrite}';
 
     /**
      * The console command description.
@@ -47,6 +47,15 @@ class CreateEnvironmentCommand extends Command
      */
     public function handle()
     {
-        return $this->manager->create($this->argument('name', 'dev'));
+        $name = $this->argument('name', 'dev');
+        $this->line("Creating new environment {$name}");
+        
+        $result = $this->manager->create($name, $this->option('overwrite', false));
+
+        if($result) {
+            $this->line("Environment {$name} has been created!");
+        } else {
+            $this->line("Environment {$name} has NOT been created becacuse it's already exists. If you want to overwrite it, use `--overwrite` option.");
+        }
     }
 }

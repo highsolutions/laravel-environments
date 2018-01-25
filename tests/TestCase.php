@@ -21,13 +21,19 @@ abstract class TestCase extends OrchestraTestCase
         $app['config']->set('laravel-environments.path', $this->getTempDirectory());
     }
 
-    public function getTempDirectory(): string
-    {
-        return __DIR__.'/temp';
+    public function getTempDirectory(string $anotherDirectory = null): string
+    {        
+        return __DIR__ . DIRECTORY_SEPARATOR .  'temp' . DIRECTORY_SEPARATOR . $anotherDirectory . DIRECTORY_SEPARATOR;
     }
 
     public function tearDown()
     {
         File::cleanDirectory(config('laravel-environments.path'));
+    }
+
+    public static function assertDirectoryExists($directoryName, $message = '')
+    {
+        $temp = (new static)->getTempDirectory($directoryName);
+        static::assertTrue(File::isDirectory($temp), $message);
     }
 }

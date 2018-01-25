@@ -32,7 +32,20 @@ Configuration
 Usage
 ------------
 
-@TODO
+Create a new environment
+========================
+
+To create a new environment, just use `create` method:
+
+```bash
+    php artisan env:create NAME_OF_ENVIRONMENT
+```
+
+In case that another environment exists with the same name, you can force to overwrite it with `--overwrite` option:
+
+```bash
+    php artisan env:create local --overwrite
+```
 
 Testing
 ---------
