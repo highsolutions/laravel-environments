@@ -21,7 +21,7 @@ abstract class TestCase extends OrchestraTestCase
         $app['config']->set('laravel-environments.path', $this->getTempDirectory());
     }
 
-    public function getTempDirectory(string $anotherDirectory = null): string
+    public function getTempDirectory($anotherDirectory = null)
     {        
         return __DIR__ . DIRECTORY_SEPARATOR .  'temp' . DIRECTORY_SEPARATOR . $anotherDirectory . DIRECTORY_SEPARATOR;
     }

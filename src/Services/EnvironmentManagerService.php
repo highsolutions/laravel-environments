@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\File;
 
 class EnvironmentManagerService implements EnvironmentManagerContract
 {
-    public function create(string $name, bool $overwrite = false): bool
+    public function create($name, $overwrite = false)
     {
         $path = $this->getPath($name);
         
@@ -17,12 +17,12 @@ class EnvironmentManagerService implements EnvironmentManagerContract
         return File::makeDirectory($path);
     }
 
-    protected function getPath(string $anotherDirectory = null)
+    protected function getPath($anotherDirectory = null)
     {
         return str_finish(config('laravel-environments.path'), DIRECTORY_SEPARATOR) . $anotherDirectory;
     }
 
-    protected function proceedOverwriteOfExistingDirectory(string $path, bool $overwrite): bool
+    protected function proceedOverwriteOfExistingDirectory($path, $overwrite)
     {
         if($overwrite)
             File::deleteDirectory($path);

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\File;
 
 class CreateCommandTest extends TestCase
 {
-    protected function executeCreate(array $params): bool
+    protected function executeCreate($params)
     {
         return Artisan::call('env:create', $params);
     }
