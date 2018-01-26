@@ -2,12 +2,9 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | LaravelEnvironments Configuration
-    |--------------------------------------------------------------------------
-    |
-    */
-
-    'path' => 'tests/temp/',
+    /**
+     * Path to place where environments will be stored.
+     * e.g. /environments or /storage/environments
+     */
+    'path' => '/environments/',
 ];
