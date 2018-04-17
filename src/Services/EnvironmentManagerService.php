@@ -67,8 +67,8 @@ class EnvironmentManagerService implements EnvironmentManagerContract
 
     protected function getFilePath($file)
     {
-        $file = str_replace('/', '\\', $file);
-        $filename = substr($file, strpos($file, '\\'));
+        $file = str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $file);
+        $filename = substr($file, strpos($file, DIRECTORY_SEPARATOR));
         $dirPath = str_before($file, $filename);
 
         return [

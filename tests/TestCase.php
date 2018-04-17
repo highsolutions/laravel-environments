@@ -30,8 +30,8 @@ abstract class TestCase extends OrchestraTestCase
     public function getBaseDirectory($file = '')
     {
         $path = $this->basePath();
-        $file = str_replace('/', '\\', $file);
-        $filename = substr($file, strpos($file, '\\'));
+        $file = str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $file);
+        $filename = substr($file, strpos($file, DIRECTORY_SEPARATOR));
         $dirPath = str_before($file, $filename);
         if (! File::exists($path.$dirPath)) {
             File::makeDirectory($path.$dirPath, 0755, true, true);
