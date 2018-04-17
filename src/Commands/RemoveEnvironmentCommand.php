@@ -22,7 +22,7 @@ class RemoveEnvironmentCommand extends Command
 
     /**
      * The service with logic.
-     * 
+     *
      * @var EnvironmentManagerContract
      */
     protected $manager;
@@ -49,13 +49,14 @@ class RemoveEnvironmentCommand extends Command
     {
         $name = $this->argument('name');
         $this->line("Removing environment {$name}");
-        
+
         $result = $this->manager->remove($name);
 
-        if($result) {
+        if ($result) {
             $this->line("Environment {$name} has been removed!");
         } else {
             $this->line("Environment {$name} has NOT been removed, because it's not existing.");
+
             return 1;
         }
     }

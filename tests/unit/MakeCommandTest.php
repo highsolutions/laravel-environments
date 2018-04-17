@@ -2,7 +2,6 @@
 
 namespace HighSolutions\LaravelEnvironments\Test;
 
-use HighSolutions\LaravelEnvironments\Test\TestCase;
 use Illuminate\Support\Facades\File;
 
 class MakeCommandTest extends TestCase
@@ -34,7 +33,7 @@ class MakeCommandTest extends TestCase
             'name' => 'local',
         ]);
 
-        $testFile = $this->getTempDirectory('local') . 'testfile.php';
+        $testFile = $this->getTempDirectory('local').'testfile.php';
         File::put($testFile, 'test');
 
         $this->assertDirectoryExists('local');
@@ -45,5 +44,4 @@ class MakeCommandTest extends TestCase
 
         $this->assertFalse(File::exists($testFile));
     }
-
 }

@@ -22,7 +22,7 @@ class MakeEnvironmentCommand extends Command
 
     /**
      * The service with logic.
-     * 
+     *
      * @var EnvironmentManagerContract
      */
     protected $manager;

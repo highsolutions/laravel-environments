@@ -2,7 +2,6 @@
 
 namespace HighSolutions\LaravelEnvironments\Test;
 
-use HighSolutions\LaravelEnvironments\Test\TestCase;
 use Illuminate\Support\Facades\File;
 
 class CreateCommandTest extends TestCase
@@ -45,7 +44,7 @@ class CreateCommandTest extends TestCase
             'name' => 'local',
         ]);
 
-        $testFile = $this->getTempDirectory('local') . 'testfile.php';
+        $testFile = $this->getTempDirectory('local').'testfile.php';
         File::put($testFile, 'test');
 
         $this->assertDirectoryExists('local');
@@ -69,7 +68,7 @@ class CreateCommandTest extends TestCase
             'name' => 'local',
         ]);
 
-        $testFile = $this->getTempDirectory('local') . 'testfile.php';
+        $testFile = $this->getTempDirectory('local').'testfile.php';
         File::put($testFile, 'test');
 
         $this->assertDirectoryExists('local');
@@ -93,7 +92,7 @@ class CreateCommandTest extends TestCase
             'name' => 'local',
         ]);
 
-        $testFile = $this->getTempDirectory('local') . 'testfile.php';
+        $testFile = $this->getTempDirectory('local').'testfile.php';
         File::put($testFile, 'test');
 
         $this->assertDirectoryExists('local');
@@ -110,7 +109,7 @@ class CreateCommandTest extends TestCase
     public function created_environment_contains_copied_file()
     {
         config([
-            'laravel-environments.files' => ['.env']
+            'laravel-environments.files' => ['.env'],
         ]);
 
         File::put($this->getBaseDirectory('.env'), 'env content');
@@ -119,7 +118,7 @@ class CreateCommandTest extends TestCase
             'name' => 'local',
         ]);
 
-        tap($this->getTempDirectory('local') . '.env', function ($file) {
+        tap($this->getTempDirectory('local').'.env', function ($file) {
             $this->assertTrue(File::exists($file));
             $this->assertEquals('env content', File::get($file));
         });
@@ -129,7 +128,7 @@ class CreateCommandTest extends TestCase
     public function created_environment_without_overwriting_contains_old_version_of_file()
     {
         config([
-            'laravel-environments.files' => ['.env']
+            'laravel-environments.files' => ['.env'],
         ]);
 
         File::put($this->getBaseDirectory('.env'), 'env content');
@@ -138,7 +137,7 @@ class CreateCommandTest extends TestCase
             'name' => 'local',
         ]);
 
-        tap($this->getTempDirectory('local') . '.env', function ($file) {
+        tap($this->getTempDirectory('local').'.env', function ($file) {
             $this->assertTrue(File::exists($file));
             $this->assertEquals('env content', File::get($file));
         });
@@ -150,7 +149,7 @@ class CreateCommandTest extends TestCase
             '--overwrite' => false,
         ]);
 
-        tap($this->getTempDirectory('local') . '.env', function ($file) {
+        tap($this->getTempDirectory('local').'.env', function ($file) {
             $this->assertTrue(File::exists($file));
             $this->assertEquals('env content', File::get($file));
         });
@@ -160,7 +159,7 @@ class CreateCommandTest extends TestCase
     public function created_environment_with_overwriting_contains_new_version_of_file()
     {
         config([
-            'laravel-environments.files' => ['.env']
+            'laravel-environments.files' => ['.env'],
         ]);
 
         File::put($this->getBaseDirectory('.env'), 'env content');
@@ -169,7 +168,7 @@ class CreateCommandTest extends TestCase
             'name' => 'local',
         ]);
 
-        tap($this->getTempDirectory('local') . '.env', function ($file) {
+        tap($this->getTempDirectory('local').'.env', function ($file) {
             $this->assertTrue(File::exists($file));
             $this->assertEquals('env content', File::get($file));
         });
@@ -181,7 +180,7 @@ class CreateCommandTest extends TestCase
             '--overwrite' => true,
         ]);
 
-        tap($this->getTempDirectory('local') . '.env', function ($file) {
+        tap($this->getTempDirectory('local').'.env', function ($file) {
             $this->assertTrue(File::exists($file));
             $this->assertEquals('env new content', File::get($file));
         });
@@ -195,7 +194,7 @@ class CreateCommandTest extends TestCase
                 '.env',
                 'phpunit.xml',
                 'public/.htaccess',
-            ]
+            ],
         ]);
 
         File::put($this->getBaseDirectory('.env'), 'env content');
@@ -206,17 +205,17 @@ class CreateCommandTest extends TestCase
             'name' => 'local',
         ]);
 
-        tap($this->getTempDirectory('local') . '.env', function ($file) {
+        tap($this->getTempDirectory('local').'.env', function ($file) {
             $this->assertTrue(File::exists($file));
             $this->assertEquals('env content', File::get($file));
         });
 
-        tap($this->getTempDirectory('local') . 'phpunit.xml', function ($file) {
+        tap($this->getTempDirectory('local').'phpunit.xml', function ($file) {
             $this->assertTrue(File::exists($file));
             $this->assertEquals('phpunit content', File::get($file));
         });
 
-        tap($this->getTempDirectory('local') . 'public/.htaccess', function ($file) {
+        tap($this->getTempDirectory('local').'public/.htaccess', function ($file) {
             $this->assertTrue(File::exists($file));
             $this->assertEquals('htaccess content', File::get($file));
         });

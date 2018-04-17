@@ -2,13 +2,13 @@
 
 return [
 
-    /**
+    /*
      * Path to place where environments will be stored.
      * e.g. /environments or /storage/environments
      */
     'path' => 'environments/',
 
-    /**
+    /*
      * Array of files that are stored in environments.
      */
     'files' => [
@@ -18,7 +18,7 @@ return [
         // ...
     ],
 
-    /**
+    /*
      * Clear directory from all of files stored in overwriting environment.
      * Potential danger of delete some files that are stored with purpose.
      */
