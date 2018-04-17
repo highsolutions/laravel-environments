@@ -27,7 +27,7 @@ class CopyCommandTest extends TestCase
 
         $this->executeCopy([
             'old' => 'local',
-            'new' => 'production'
+            'new' => 'production',
         ]);
 
         $this->assertDirectoryExists('production');
@@ -40,7 +40,7 @@ class CopyCommandTest extends TestCase
 
         $this->executeCopy([
             'old' => 'local',
-            'new' => 'production'
+            'new' => 'production',
         ]);
 
         $this->assertDirectoryNotExists('production');
@@ -127,5 +127,4 @@ class CopyCommandTest extends TestCase
             $this->assertEquals('htaccess content', File::get($file));
         });
     }
-
 }
