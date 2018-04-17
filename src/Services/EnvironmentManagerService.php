@@ -29,7 +29,11 @@ class EnvironmentManagerService implements EnvironmentManagerContract
 
     protected function getStoragePath()
     {
-        return str_finish($this->getConfig('path'), DIRECTORY_SEPARATOR);
+        $path = $this->getConfig('path');
+        if(! File::exists($path))
+            File::makeDirectory($path, 0755, true, true);
+            
+        return str_finish($path, DIRECTORY_SEPARATOR);
     }
 
     protected function getConfig($key)
