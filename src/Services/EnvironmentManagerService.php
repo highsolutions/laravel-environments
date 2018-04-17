@@ -124,13 +124,17 @@ class EnvironmentManagerService implements EnvironmentManagerContract
 
     protected function transformListRow($name, $index)
     {
-        $path = $this->getStoragePath();
-        $dir = str_replace(['/', '\\'], '', str_replace($path, '', $name));
-
         return [
             $index + 1,
-            $dir,
+            $this->stripPathAndSeparators($name),
         ];
+    }
+
+    private function stripPathAndSeparators($name)
+    {
+        $path = $this->getStoragePath();
+
+        return str_replace(['/', '\\'], '', str_replace($path, '', $name));
     }
 
     public function copy($old, $new, $overwrite = false)
@@ -151,5 +155,41 @@ class EnvironmentManagerService implements EnvironmentManagerContract
         }
 
         return File::copyDirectory($path.$old, $path.$new);
+    }
+
+    public function setActive($name)
+    {
+        $this->setPath($name);
+
+        if(! $this->checkExistingDirectory())
+            return false;
+
+        $this->activateFiles();
+
+        return true;
+    }
+
+    protected function activateFiles()
+    {
+        collect($this->getEnvironmentFiles())
+            ->each(function ($file) {
+                $this->activateFile($file);
+            });
+    }
+
+    protected function getEnvironmentFiles()
+    {
+        return File::allFiles($this->path, true);
+    }
+
+    protected function activateFile($file)
+    {
+        $fileName = $this->stripEnvPath($file);
+        File::copy($file, base_path($fileName));
+    }
+
+    protected function stripEnvPath($file)
+    {
+        return str_replace($this->path, '', $file);
     }
 }

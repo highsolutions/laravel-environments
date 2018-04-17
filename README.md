@@ -57,6 +57,15 @@ You can use also predefined `make:env` method to be more consistent with other L
     php artisan make:env NAME_OF_ENVIRONMENT
 ```
 
+Set environment as active
+========================
+
+To copy files to main codebase, just use `set` method:
+
+```bash
+    php artisan env:set NAME_OF_ENVIRONMENT
+```
+
 Copy an environment
 ========================
 
@@ -102,7 +111,9 @@ vendor/bin/phpunit
 Changelog
 ---------
 
-@TODO
+1.0.0
+* Create, Copy, Remove, Set, List commands
+* Unit tests
 
 Credits
 -------
