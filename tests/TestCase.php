@@ -57,7 +57,7 @@ abstract class TestCase extends OrchestraTestCase
         File::cleanDirectory(config('laravel-environments.path'));
     }
 
-    public static function assertDirectoryExists($directoryName, $message = '')
+    public static function assertDirectoryExists($directoryName, $message = ''):void
     {
         $temp = (new static)->getTempDirectory($directoryName);
         static::assertTrue(File::isDirectory($temp), $message);
