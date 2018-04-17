@@ -138,12 +138,14 @@ class EnvironmentManagerService implements EnvironmentManagerContract
         $this->setPath($new);
 
         $path = $this->getStoragePath();
-        if(! File::exists($path.$old))
-            return null;
+        if (! File::exists($path.$old)) {
+            return;
+        }
 
-        if(File::exists($path.$new)) {
-            if(! $overwrite)
+        if (File::exists($path.$new)) {
+            if (! $overwrite) {
                 return false;
+            }
 
             $this->removeDirectory();
         }
