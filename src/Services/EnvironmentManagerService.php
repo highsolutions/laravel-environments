@@ -126,10 +126,10 @@ class EnvironmentManagerService implements EnvironmentManagerContract
     {
         $path = $this->getStoragePath();
         $dir = str_replace(['/', '\\'], '', str_replace($path, '', $name));
-        
+
         return [
-            $index + 1, 
-            $dir
+            $index + 1,
+            $dir,
         ];
     }
 }

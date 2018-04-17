@@ -67,20 +67,23 @@ abstract class TestCase extends OrchestraTestCase
     {
         $found = false;
 
-        foreach($array as $rows) {
+        foreach ($array as $rows) {
             if (is_array($rows)) {
-                foreach($rows as $col) {
-                    if ($col == $search)
+                foreach ($rows as $col) {
+                    if ($col == $search) {
                         $found = true;
+                    }
                 }
             } else {
-                if ($rows == $search)
+                if ($rows == $search) {
                     $found = true;
+                }
             }
         }
 
-        if($found) {
+        if ($found) {
             $this->assertTrue(true);
+
             return;
         }
 
