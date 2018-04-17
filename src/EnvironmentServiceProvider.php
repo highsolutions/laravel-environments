@@ -3,6 +3,7 @@
 namespace HighSolutions\LaravelEnvironments;
 
 use Illuminate\Support\ServiceProvider;
+use HighSolutions\LaravelEnvironments\Commands\CopyEnvironmentCommand;
 use HighSolutions\LaravelEnvironments\Commands\ListEnvironmentCommand;
 use HighSolutions\LaravelEnvironments\Commands\MakeEnvironmentCommand;
 use HighSolutions\LaravelEnvironments\Commands\CreateEnvironmentCommand;
@@ -54,6 +55,7 @@ class EnvironmentServiceProvider extends ServiceProvider
             'make' => MakeEnvironmentCommand::class,
             'remove' => RemoveEnvironmentCommand::class,
             'list' => ListEnvironmentCommand::class,
+            'copy' => CopyEnvironmentCommand::class,
         ];
     }
 

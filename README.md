@@ -57,6 +57,21 @@ You can use also predefined `make:env` method to be more consistent with other L
     php artisan make:env NAME_OF_ENVIRONMENT
 ```
 
+Copy an environment
+========================
+
+To make a duplicate of existing environment, just use `copy` method:
+
+```bash
+    php artisan env:copy NAME_OF_EXISTING_ENVIRONMENT NAME_OF_NEW_ENVIRONMENT
+```
+
+In case that another environment exists with the same name, you can force to overwrite it with `--overwrite` option:
+
+```bash
+    php artisan env:copy old new --overwrite
+```
+
 Remove an environment
 ========================
 
