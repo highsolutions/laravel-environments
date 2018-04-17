@@ -53,9 +53,9 @@ class CreateEnvironmentCommand extends Command
         $result = $this->manager->create($name, $this->option('overwrite', false));
 
         if ($result) {
-            $this->line("Environment {$name} has been created!");
+            $this->info("Environment {$name} has been created!");
         } else {
-            $this->line("Environment {$name} has NOT been created becacuse it's already exists. If you want to overwrite it, use `--overwrite` option.");
+            $this->error("Environment {$name} has NOT been created becacuse it's already exists. If you want to overwrite it, use `--overwrite` option.");
         }
     }
 }

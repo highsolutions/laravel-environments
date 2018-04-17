@@ -53,7 +53,7 @@ class SetEnvironmentCommand extends Command
         $result = $this->manager->setActive($name);
 
         if ($result) {
-            $this->line("Environment {$name} is active!");
+            $this->info("Environment {$name} is active!");
         } else {
             $this->error("Environment {$name} has NOT been set active becacuse it's not exists.");
         }

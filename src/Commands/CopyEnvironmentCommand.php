@@ -54,11 +54,11 @@ class CopyEnvironmentCommand extends Command
         $result = $this->manager->copy($old, $new, $this->option('overwrite', false));
 
         if ($result) {
-            $this->line("Environment {$new} has been created from {$old}!");
+            $this->info("Environment {$new} has been created from {$old}!");
         } elseif ($result === null) {
             $this->error("Environment {$new} has NOT been created becacuse environemnt {$old} does NOT exist.");
         } else {
-            $this->info("Environment {$new} has NOT been created becacuse it's already exists. If you want to overwrite it, use `--overwrite` option.");
+            $this->error("Environment {$new} has NOT been created becacuse it's already exists. If you want to overwrite it, use `--overwrite` option.");
         }
     }
 }
