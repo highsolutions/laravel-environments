@@ -27,12 +27,44 @@ Run `composer update` to install the package.
 Configuration
 ------------
 
-@TODO
+| Name                             | Description                                                                                | Default                                              |
+|----------------------------------|--------------------------------------------------------------------------------------------|------------------------------------------------------|
+| path                             | Path where environments will be stored                                                     | environments/                                        |
+| files                            | Files that will be stored for each environment                                             | [   '.env',   'phpunit.xml',   'public/.htaccess', ] |
+| clear_directory_when_overwriting | If set to true, overwriting environment will be cleared out before putting new files there | false                                                |
 
 Usage
 ------------
 
-@TODO
+Create a new environment
+========================
+
+To create a new environment, just use `create` method:
+
+```bash
+    php artisan env:create NAME_OF_ENVIRONMENT
+```
+
+In case that another environment exists with the same name, you can force to overwrite it with `--overwrite` option:
+
+```bash
+    php artisan env:create local --overwrite
+```
+
+You can use also predefined `make:env` method to be more consistent with other Laravel commands (`--overwrite` option is enabled here):
+
+```bash
+    php artisan make:env NAME_OF_ENVIRONMENT
+```
+
+Remove an environment
+========================
+
+To remove an environment, just use `remove` method:
+
+```bash
+    php artisan env:remove NAME_OF_ENVIRONMENT
+```
 
 Testing
 ---------
