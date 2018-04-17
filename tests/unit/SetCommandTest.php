@@ -137,5 +137,4 @@ class SetCommandTest extends TestCase
             $this->assertEquals('env staging content', File::get($file));
         });
     }
-
 }
