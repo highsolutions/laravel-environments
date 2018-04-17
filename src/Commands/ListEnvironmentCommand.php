@@ -49,8 +49,9 @@ class ListEnvironmentCommand extends Command
     {
         $environments = $this->manager->getList();
 
-        if(sizeof($environments) == 0) {
+        if (count($environments) == 0) {
             $this->error('There are no defined environments.');
+
             return;
         }
 

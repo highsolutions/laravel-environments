@@ -2,13 +2,13 @@
 
 namespace HighSolutions\LaravelEnvironments;
 
-use HighSolutions\LaravelEnvironments\Commands\CreateEnvironmentCommand;
+use Illuminate\Support\ServiceProvider;
 use HighSolutions\LaravelEnvironments\Commands\ListEnvironmentCommand;
 use HighSolutions\LaravelEnvironments\Commands\MakeEnvironmentCommand;
+use HighSolutions\LaravelEnvironments\Commands\CreateEnvironmentCommand;
 use HighSolutions\LaravelEnvironments\Commands\RemoveEnvironmentCommand;
-use HighSolutions\LaravelEnvironments\Contracts\EnvironmentManagerContract;
 use HighSolutions\LaravelEnvironments\Services\EnvironmentManagerService;
-use Illuminate\Support\ServiceProvider;
+use HighSolutions\LaravelEnvironments\Contracts\EnvironmentManagerContract;
 
 class EnvironmentServiceProvider extends ServiceProvider
 {

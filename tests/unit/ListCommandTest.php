@@ -49,5 +49,4 @@ class ListCommandTest extends TestCase
         $this->assertNestedArrayContains('local', $list);
         $this->assertNestedArrayContains('master', $list);
     }
-
 }
