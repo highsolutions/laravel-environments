@@ -1,17 +1,16 @@
-<?php 
+<?php
 
 namespace HighSolutions\LaravelEnvironments;
 
-use HighSolutions\LaravelEnvironments\Commands\CreateEnvironmentCommand;
-use HighSolutions\LaravelEnvironments\Commands\MakeEnvironmentCommand;
-use HighSolutions\LaravelEnvironments\Commands\RemoveEnvironmentCommand;
-use HighSolutions\LaravelEnvironments\Contracts\EnvironmentManagerContract;
-use HighSolutions\LaravelEnvironments\Services\EnvironmentManagerService;
 use Illuminate\Support\ServiceProvider;
+use HighSolutions\LaravelEnvironments\Commands\MakeEnvironmentCommand;
+use HighSolutions\LaravelEnvironments\Commands\CreateEnvironmentCommand;
+use HighSolutions\LaravelEnvironments\Commands\RemoveEnvironmentCommand;
+use HighSolutions\LaravelEnvironments\Services\EnvironmentManagerService;
+use HighSolutions\LaravelEnvironments\Contracts\EnvironmentManagerContract;
 
-class EnvironmentServiceProvider extends ServiceProvider 
+class EnvironmentServiceProvider extends ServiceProvider
 {
-
     /**
      * Register the service provider.
      *
@@ -26,12 +25,12 @@ class EnvironmentServiceProvider extends ServiceProvider
         $this->_commandsRegister();
     }
 
-    private function _basicRegister() 
+    private function _basicRegister()
     {
-        $configPath = __DIR__ . '/../config/laravel-environments.php';
+        $configPath = __DIR__.'/../config/laravel-environments.php';
         $this->mergeConfigFrom($configPath, 'laravel-environments');
         $this->publishes([
-            $configPath => config_path('laravel-environments.php')
+            $configPath => config_path('laravel-environments.php'),
         ], 'config');
     }
 
@@ -40,9 +39,9 @@ class EnvironmentServiceProvider extends ServiceProvider
         app()->bind(EnvironmentManagerContract::class, EnvironmentManagerService::class);
     }
 
-    private function _commandsRegister() 
+    private function _commandsRegister()
     {
-        foreach($this->commandsList() as $name => $class) {
+        foreach ($this->commandsList() as $name => $class) {
             $this->initCommand($name, $class);
         }
     }
@@ -58,7 +57,7 @@ class EnvironmentServiceProvider extends ServiceProvider
 
     private function initCommand($name, $class)
     {
-        $this->app->singleton("command.laravel-environments.{$name}", function($app) use ($class) {
+        $this->app->singleton("command.laravel-environments.{$name}", function ($app) use ($class) {
             return new $class(resolve(EnvironmentManagerContract::class));
         });
 
@@ -66,13 +65,11 @@ class EnvironmentServiceProvider extends ServiceProvider
     }
 
     /**
-	 * Bootstrap the application events.
-	 *
-	 * @return void
-	 */
-	public function boot()
-	{
-
-	}
-
+     * Bootstrap the application events.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+    }
 }

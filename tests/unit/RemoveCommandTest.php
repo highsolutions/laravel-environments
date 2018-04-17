@@ -2,9 +2,6 @@
 
 namespace HighSolutions\LaravelEnvironments\Test;
 
-use HighSolutions\LaravelEnvironments\Test\TestCase;
-use Illuminate\Support\Facades\File;
-
 class RemoveCommandTest extends TestCase
 {
     protected function executeCreate($params)
@@ -45,5 +42,4 @@ class RemoveCommandTest extends TestCase
         $this->assertEquals(1, $code);
         $this->assertDirectoryNotExists('local');
     }
-
 }

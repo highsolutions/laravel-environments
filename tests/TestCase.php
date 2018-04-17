@@ -2,13 +2,12 @@
 
 namespace HighSolutions\LaravelEnvironments\Test;
 
-use HighSolutions\LaravelEnvironments\EnvironmentServiceProvider;
-use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use Illuminate\Support\Facades\File;
+use Orchestra\Testbench\TestCase as OrchestraTestCase;
+use HighSolutions\LaravelEnvironments\EnvironmentServiceProvider;
 
 abstract class TestCase extends OrchestraTestCase
 {
-
     protected function getPackageProviders($app)
     {
         return [
@@ -24,8 +23,8 @@ abstract class TestCase extends OrchestraTestCase
     }
 
     public function getTempDirectory($anotherDirectory = null)
-    {        
-        return str_finish(__DIR__ . DIRECTORY_SEPARATOR .  'temp' . DIRECTORY_SEPARATOR . $anotherDirectory, DIRECTORY_SEPARATOR);
+    {
+        return str_finish(__DIR__.DIRECTORY_SEPARATOR.'temp'.DIRECTORY_SEPARATOR.$anotherDirectory, DIRECTORY_SEPARATOR);
     }
 
     public function getBaseDirectory($file = '')
@@ -34,9 +33,11 @@ abstract class TestCase extends OrchestraTestCase
         $file = str_replace('/', '\\', $file);
         $filename = substr($file, strpos($file, '\\'));
         $dirPath = str_before($file, $filename);
-        if(!File::exists($path . $dirPath))
-            File::makeDirectory($path . $dirPath, 0755, true, true);
-        return $path . $dirPath . $filename;
+        if (! File::exists($path.$dirPath)) {
+            File::makeDirectory($path.$dirPath, 0755, true, true);
+        }
+
+        return $path.$dirPath.$filename;
     }
 
     protected function basePath()
@@ -47,7 +48,7 @@ abstract class TestCase extends OrchestraTestCase
     public function setUp()
     {
         parent::setUp();
-        
+
         File::cleanDirectory(config('laravel-environments.path'));
     }
 

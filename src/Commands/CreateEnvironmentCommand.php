@@ -22,7 +22,7 @@ class CreateEnvironmentCommand extends Command
 
     /**
      * The service with logic.
-     * 
+     *
      * @var EnvironmentManagerContract
      */
     protected $manager;
@@ -49,10 +49,10 @@ class CreateEnvironmentCommand extends Command
     {
         $name = $this->argument('name', 'dev');
         $this->line("Creating new environment {$name}");
-        
+
         $result = $this->manager->create($name, $this->option('overwrite', false));
 
-        if($result) {
+        if ($result) {
             $this->line("Environment {$name} has been created!");
         } else {
             $this->line("Environment {$name} has NOT been created becacuse it's already exists. If you want to overwrite it, use `--overwrite` option.");
