@@ -30,8 +30,9 @@ class EnvironmentManagerService implements EnvironmentManagerContract
     protected function getStoragePath()
     {
         $path = $this->getConfig('path');
-        if(! File::exists($path))
+        if (! File::exists($path)) {
             File::makeDirectory($path, 0755, true, true);
+        }
 
         return str_finish($path, DIRECTORY_SEPARATOR);
     }
@@ -137,6 +138,7 @@ class EnvironmentManagerService implements EnvironmentManagerContract
     private function stripPathAndSeparators($name)
     {
         $path = $this->getStoragePath();
+
         return str_replace($path, '', $name);
     }
 
