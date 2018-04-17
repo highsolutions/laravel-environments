@@ -62,4 +62,28 @@ abstract class TestCase extends OrchestraTestCase
         $temp = (new static)->getTempDirectory($directoryName);
         static::assertTrue(File::isDirectory($temp), $message);
     }
+
+    protected function assertNestedArrayContains($search, $array)
+    {
+        $found = false;
+
+        foreach($array as $rows) {
+            if (is_array($rows)) {
+                foreach($rows as $col) {
+                    if ($col == $search)
+                        $found = true;
+                }
+            } else {
+                if ($rows == $search)
+                    $found = true;
+            }
+        }
+
+        if($found) {
+            $this->assertTrue(true);
+            return;
+        }
+
+        $this->fail("Failed asserting that an array contains '$search'.");
+    }
 }

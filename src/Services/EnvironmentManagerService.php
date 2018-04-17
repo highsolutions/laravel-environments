@@ -24,8 +24,12 @@ class EnvironmentManagerService implements EnvironmentManagerContract
 
     protected function setPath($anotherDirectory = '')
     {
-        $basicPath = str_finish($this->getConfig('path'), DIRECTORY_SEPARATOR);
-        $this->path = str_finish($basicPath.$anotherDirectory, DIRECTORY_SEPARATOR);
+        $this->path = str_finish($this->getStoragePath().$anotherDirectory, DIRECTORY_SEPARATOR);
+    }
+
+    protected function getStoragePath()
+    {
+        return str_finish($this->getConfig('path'), DIRECTORY_SEPARATOR);
     }
 
     protected function getConfig($key)
@@ -105,5 +109,27 @@ class EnvironmentManagerService implements EnvironmentManagerContract
     protected function removeDirectory()
     {
         File::cleanDirectory($this->path);
+    }
+
+    public function getList()
+    {
+        $path = $this->getStoragePath();
+        $list = File::directories($path);
+
+        return collect($list)
+            ->map(function ($dir, $index) {
+                return $this->transformListRow($dir, $index);
+            })->all();
+    }
+
+    protected function transformListRow($name, $index)
+    {
+        $path = $this->getStoragePath();
+        $dir = str_replace(['/', '\\'], '', str_replace($path, '', $name));
+        
+        return [
+            $index + 1, 
+            $dir
+        ];
     }
 }
