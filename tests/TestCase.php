@@ -54,7 +54,7 @@ abstract class TestCase extends OrchestraTestCase
 
     public function tearDown()
     {
-          File::cleanDirectory(config('laravel-environments.path'));
+        File::cleanDirectory(config('laravel-environments.path'));
     }
 
     public static function assertDirectoryExists($directoryName, $message = '')
