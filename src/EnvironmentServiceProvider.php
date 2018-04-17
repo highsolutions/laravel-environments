@@ -3,6 +3,7 @@
 namespace HighSolutions\LaravelEnvironments;
 
 use Illuminate\Support\ServiceProvider;
+use HighSolutions\LaravelEnvironments\Commands\ListEnvironmentCommand;
 use HighSolutions\LaravelEnvironments\Commands\MakeEnvironmentCommand;
 use HighSolutions\LaravelEnvironments\Commands\CreateEnvironmentCommand;
 use HighSolutions\LaravelEnvironments\Commands\RemoveEnvironmentCommand;
@@ -52,6 +53,7 @@ class EnvironmentServiceProvider extends ServiceProvider
             'create' => CreateEnvironmentCommand::class,
             'make' => MakeEnvironmentCommand::class,
             'remove' => RemoveEnvironmentCommand::class,
+            'list' => ListEnvironmentCommand::class,
         ];
     }
 

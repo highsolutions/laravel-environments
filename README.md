@@ -66,6 +66,15 @@ To remove an environment, just use `remove` method:
     php artisan env:remove NAME_OF_ENVIRONMENT
 ```
 
+List all environments
+========================
+
+To see a list of all environments, just use `list` method:
+
+```bash
+    php artisan env:list
+```
+
 Testing
 ---------
 
