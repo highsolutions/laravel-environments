@@ -27,7 +27,11 @@ Run `composer update` to install the package.
 Configuration
 ------------
 
-@TODO
+| Name                             | Description                                                                                | Default                                              |
+|----------------------------------|--------------------------------------------------------------------------------------------|------------------------------------------------------|
+| path                             | Path where environments will be stored                                                     | environments/                                        |
+| files                            | Files that will be stored for each environment                                             | [   '.env',   'phpunit.xml',   'public/.htaccess', ] |
+| clear_directory_when_overwriting | If set to true, overwriting environment will be cleared out before putting new files there | false                                                |
 
 Usage
 ------------
