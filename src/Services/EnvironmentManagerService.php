@@ -32,7 +32,7 @@ class EnvironmentManagerService implements EnvironmentManagerContract
         $path = $this->getConfig('path');
         if(! File::exists($path))
             File::makeDirectory($path, 0755, true, true);
-            
+
         return str_finish($path, DIRECTORY_SEPARATOR);
     }
 
@@ -112,7 +112,7 @@ class EnvironmentManagerService implements EnvironmentManagerContract
 
     protected function removeDirectory()
     {
-        File::cleanDirectory($this->path);
+        File::deleteDirectory($this->path);
     }
 
     public function getList()
@@ -155,10 +155,15 @@ class EnvironmentManagerService implements EnvironmentManagerContract
                 return false;
             }
 
-            $this->removeDirectory();
+            $this->cleanDirectory();
         }
 
         return File::copyDirectory($path.$old, $path.$new);
+    }
+
+    protected function cleanDirectory()
+    {
+        File::cleanDirectory($this->path);
     }
 
     public function setActive($name)
