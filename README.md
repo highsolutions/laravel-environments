@@ -118,6 +118,9 @@ vendor/bin/phpunit
 Changelog
 ---------
 
+1.6.0
+* Laravel 5.6 support
+
 1.5.0
 * Create, Copy, Remove, Set, List commands
 * Unit tests
