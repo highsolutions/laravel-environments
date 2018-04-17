@@ -161,8 +161,9 @@ class EnvironmentManagerService implements EnvironmentManagerContract
     {
         $this->setPath($name);
 
-        if(! $this->checkExistingDirectory())
+        if (! $this->checkExistingDirectory()) {
             return false;
+        }
 
         $this->activateFiles();
 
