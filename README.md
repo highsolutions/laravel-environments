@@ -57,6 +57,15 @@ You can use also predefined `make:env` method to be more consistent with other L
     php artisan make:env NAME_OF_ENVIRONMENT
 ```
 
+Remove an environment
+========================
+
+To remove an environment, just use `remove` method:
+
+```bash
+    php artisan env:remove NAME_OF_ENVIRONMENT
+```
+
 Testing
 ---------
 

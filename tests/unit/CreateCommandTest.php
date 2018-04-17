@@ -2,7 +2,6 @@
 
 namespace HighSolutions\LaravelEnvironments\Test;
 
-use HighSolutions\LaravelEnvironments\Commands\CreateEnvironmentCommand;
 use HighSolutions\LaravelEnvironments\Test\TestCase;
 use Illuminate\Support\Facades\File;
 

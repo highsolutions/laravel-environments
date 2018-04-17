@@ -4,6 +4,7 @@ namespace HighSolutions\LaravelEnvironments;
 
 use HighSolutions\LaravelEnvironments\Commands\CreateEnvironmentCommand;
 use HighSolutions\LaravelEnvironments\Commands\MakeEnvironmentCommand;
+use HighSolutions\LaravelEnvironments\Commands\RemoveEnvironmentCommand;
 use HighSolutions\LaravelEnvironments\Contracts\EnvironmentManagerContract;
 use HighSolutions\LaravelEnvironments\Services\EnvironmentManagerService;
 use Illuminate\Support\ServiceProvider;
@@ -51,6 +52,7 @@ class EnvironmentServiceProvider extends ServiceProvider
         return [
             'create' => CreateEnvironmentCommand::class,
             'make' => MakeEnvironmentCommand::class,
+            'remove' => RemoveEnvironmentCommand::class,
         ];
     }
 

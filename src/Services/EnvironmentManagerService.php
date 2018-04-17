@@ -17,6 +17,8 @@ class EnvironmentManagerService implements EnvironmentManagerContract
             return;
      
         $this->copyFiles();
+
+        return true;
     }
 
     protected function setPath($anotherDirectory = '')
@@ -75,5 +77,27 @@ class EnvironmentManagerService implements EnvironmentManagerContract
     {
         if(!File::exists($path))
             File::makeDirectory($path, 0755, true, true);
+    }
+
+    public function remove($name)
+    {
+        $this->setPath($name);
+        
+        if(!$this->checkExistingDirectory())
+            return false;
+     
+        $this->removeDirectory();
+
+        return true;
+    }
+
+    protected function checkExistingDirectory()
+    {
+        return File::exists($this->path);
+    }
+
+    protected function removeDirectory()
+    {
+        File::cleanDirectory($this->path);
     }
 }
