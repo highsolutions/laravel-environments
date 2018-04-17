@@ -18,8 +18,14 @@ Or by adding the following line to the `require` section of your Laravel webapp'
 
 ```javascript
     "require": {
-        "HighSolutions/eloquent-sequence": "*"
+        "HighSolutions/laravel-environments": "1.*"
     }
+```
+
+Optionally, publish the configuration file if you want to change any defaults:
+
+```bash
+php artisan vendor:publish --provider="HighSolutions\LaravelEnvironments\EnvironmentServiceProvider"
 ```
 
 Run `composer update` to install the package.
@@ -32,6 +38,7 @@ Configuration
 | path                             | Path where environments will be stored                                                     | environments/                                        |
 | files                            | Files that will be stored for each environment                                             | [   '.env',   'phpunit.xml',   'public/.htaccess', ] |
 | clear_directory_when_overwriting | If set to true, overwriting environment will be cleared out before putting new files there | false                                                |
+
 
 Usage
 ------------
@@ -111,9 +118,10 @@ vendor/bin/phpunit
 Changelog
 ---------
 
-1.0.0
+1.5.0
 * Create, Copy, Remove, Set, List commands
 * Unit tests
+* Laravel 5.5 Support
 
 Credits
 -------
