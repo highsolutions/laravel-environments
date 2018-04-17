@@ -137,8 +137,7 @@ class EnvironmentManagerService implements EnvironmentManagerContract
     private function stripPathAndSeparators($name)
     {
         $path = $this->getStoragePath();
-
-        return str_replace(['/', '\\'], '', str_replace($path, '', $name));
+        return str_replace($path, '', $name);
     }
 
     public function copy($old, $new, $overwrite = false)
