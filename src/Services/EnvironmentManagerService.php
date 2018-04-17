@@ -132,4 +132,22 @@ class EnvironmentManagerService implements EnvironmentManagerContract
             $dir,
         ];
     }
+
+    public function copy($old, $new, $overwrite = false)
+    {
+        $this->setPath($new);
+
+        $path = $this->getStoragePath();
+        if(! File::exists($path.$old))
+            return null;
+
+        if(File::exists($path.$new)) {
+            if(! $overwrite)
+                return false;
+
+            $this->removeDirectory();
+        }
+
+        return File::copyDirectory($path.$old, $path.$new);
+    }
 }
