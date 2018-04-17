@@ -51,6 +51,12 @@ In case that another environment exists with the same name, you can force to ove
     php artisan env:create local --overwrite
 ```
 
+You can use also predefined `make:env` method to be more consistent with other Laravel commands (`--overwrite` option is enabled here):
+
+```bash
+    php artisan make:env NAME_OF_ENVIRONMENT
+```
+
 Testing
 ---------
 
