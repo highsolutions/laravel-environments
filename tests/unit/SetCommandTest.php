@@ -20,13 +20,13 @@ class SetCommandTest extends TestCase
     public function set_empty_environment()
     {
         $this->executeCreate([
-            'name' => 'local',
+            'name' => 'local1',
         ]);
 
-        $this->assertDirectoryExists('local');
+        $this->assertDirectoryExists('local1');
 
         $this->executeSet([
-            'name' => 'local',
+            'name' => 'local1',
         ]);
     }
 
@@ -40,13 +40,13 @@ class SetCommandTest extends TestCase
         File::put($this->getBaseDirectory('.env'), 'env content');
 
         $this->executeCreate([
-            'name' => 'local',
+            'name' => 'local2',
         ]);
 
-        File::put($this->getTempDirectory('local').'.env', 'env new content');
+        File::put($this->getTempDirectory('local2').'.env', 'env new content');
 
         $this->executeSet([
-            'name' => 'local',
+            'name' => 'local2',
         ]);
 
         tap($this->getBaseDirectory('.env'), function ($file) {
@@ -71,15 +71,15 @@ class SetCommandTest extends TestCase
         File::put($this->getBaseDirectory('public/.htaccess'), 'htaccess content');
 
         $this->executeCreate([
-            'name' => 'local',
+            'name' => 'local3',
         ]);
 
-        File::put($this->getTempDirectory('local').'.env', 'env new content');
-        File::put($this->getTempDirectory('local').'phpunit.xml', 'phpunit new content');
-        File::put($this->getTempDirectory('local').'public/.htaccess', 'htaccess new content');
+        File::put($this->getTempDirectory('local3').'.env', 'env new content');
+        File::put($this->getTempDirectory('local3').'phpunit.xml', 'phpunit new content');
+        File::put($this->getTempDirectory('local3').'public/.htaccess', 'htaccess new content');
 
         $this->executeSet([
-            'name' => 'local',
+            'name' => 'local3',
         ]);
 
         tap($this->getBaseDirectory('.env'), function ($file) {
@@ -108,10 +108,10 @@ class SetCommandTest extends TestCase
         File::put($this->getBaseDirectory('.env'), 'env content');
 
         $this->executeCreate([
-            'name' => 'local',
+            'name' => 'local4',
         ]);
 
-        File::put($this->getTempDirectory('local').'.env', 'env local content');
+        File::put($this->getTempDirectory('local4').'.env', 'env local content');
 
         $this->executeCreate([
             'name' => 'staging',
@@ -120,7 +120,7 @@ class SetCommandTest extends TestCase
         File::put($this->getTempDirectory('staging').'.env', 'env staging content');
 
         $this->executeSet([
-            'name' => 'local',
+            'name' => 'local4',
         ]);
 
         tap($this->getBaseDirectory('.env'), function ($file) {
