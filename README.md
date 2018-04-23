@@ -1,5 +1,7 @@
-Laravel Environments ![CircleCI](https://circleci.com/gh/highsolutions/laravel-environments.svg?style=svg) ![StyleCI](https://styleci.io/repos/118597081/shield?branch=master)
+Laravel Environments
 ================
+
+ ![CircleCI](https://circleci.com/gh/highsolutions/laravel-environments.svg?style=svg) ![StyleCI](https://styleci.io/repos/118597081/shield?branch=master) [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 Easy management of different environments in Laravel projects.
 
@@ -18,9 +20,17 @@ Or by adding the following line to the `require` section of your Laravel webapp'
 
 ```javascript
     "require": {
-        "HighSolutions/laravel-environments": "1.*"
+        "HighSolutions/laravel-environments": "2.*"
     }
 ```
+
+If you are using Laravel <= 5.4, update `config/app.php` by adding an entry for the service provider:
+
+```php
+'providers' => [
+    // ...
+    HighSolutions\LaravelEnvironments\EnvironmentServiceProvider::class,
+];
 
 Optionally, publish the configuration file if you want to change any defaults:
 
@@ -117,6 +127,9 @@ vendor/bin/phpunit
 
 Changelog
 ---------
+
+2.0.0
+* Support for all Laravel 5.* versions (to-date)
 
 1.6.0
 * Laravel 5.6 support
