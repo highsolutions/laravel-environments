@@ -31,6 +31,7 @@ If you are using Laravel <= 5.4, update `config/app.php` by adding an entry for 
     // ...
     HighSolutions\LaravelEnvironments\EnvironmentServiceProvider::class,
 ];
+```
 
 Optionally, publish the configuration file if you want to change any defaults:
 
