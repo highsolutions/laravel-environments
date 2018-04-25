@@ -137,4 +137,84 @@ class SetCommandTest extends TestCase
             $this->assertEquals('env staging content', File::get($file));
         });
     }
+
+    /** @test */
+    public function set_env_without_one_of_files_and_delete_this_missing_file()
+    {
+        config([
+            'laravel-environments.files' => [
+                '.env',
+                'missing.php',
+            ],
+        ]);
+
+        File::put($this->getBaseDirectory('.env'), 'env content');
+        File::put($this->getBaseDirectory('missing.php'), 'missing content');
+
+        tap($this->getBaseDirectory('missing.php'), function ($file) {
+            $this->assertTrue(File::exists($file));
+        });
+
+        $this->executeCreate([
+            'name' => 'local5',
+        ]);
+
+        tap($this->getTempDirectory('local5').'missing.php', function ($file) {
+            File::delete($file);
+            $this->assertFalse(File::exists($file));
+        });
+
+        $this->executeSet([
+            'name' => 'local5',
+        ]);
+
+        tap($this->getBaseDirectory('missing.php'), function ($file) {
+            $this->assertFalse(File::exists($file));
+        });
+
+        tap($this->getBaseDirectory('.env'), function ($file) {
+            $this->assertTrue(File::exists($file));
+            $this->assertEquals('env content', File::get($file));
+        });
+    }
+
+    /** @test */
+    public function set_env_without_one_of_files_and_not_delete_this_missing_file_because_of_config()
+    {
+        config([
+            'laravel-environments.files' => [
+                '.env',
+                'missing.php',
+            ],
+        ]);
+
+        config([
+            'laravel-environments.keep_existing_file_when_missing' => true,
+        ]);
+
+        File::put($this->getBaseDirectory('.env'), 'env content');
+        File::put($this->getBaseDirectory('missing.php'), 'missing content');
+
+        tap($this->getBaseDirectory('missing.php'), function ($file) {
+            $this->assertTrue(File::exists($file));
+        });
+
+        $this->executeCreate([
+            'name' => 'local6',
+        ]);
+
+        tap($this->getTempDirectory('local6').'missing.php', function ($file) {
+            File::delete($file);
+            $this->assertFalse(File::exists($file));
+        });
+
+        $this->executeSet([
+            'name' => 'local6',
+        ]);
+
+        tap($this->getBaseDirectory('missing.php'), function ($file) {
+            $this->assertTrue(File::exists($file));
+            $this->assertEquals('missing content', File::get($file));
+        });
+    }
 }

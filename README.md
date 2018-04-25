@@ -48,6 +48,7 @@ Configuration
 | path                             | Path where environments will be stored                                                     | environments/                                        |
 | files                            | Files that will be stored for each environment                                             | [   '.env',   'phpunit.xml',   'public/.htaccess', ] |
 | clear_directory_when_overwriting | If set to true, overwriting environment will be cleared out before putting new files there | false                                                |
+| keep_existing_file_when_missing  | If set to true, existing file in base directory will be not deleted when this file is missing in environment set to active | false                                                |
 
 
 Usage
@@ -127,6 +128,9 @@ vendor/bin/phpunit
 
 Changelog
 ---------
+
+2.1.0
+* Removing files that are exist in base folder but not exist in environment being set to active
 
 2.0.0
 * Support for all Laravel 5.* versions (to-date)

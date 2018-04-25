@@ -177,6 +177,9 @@ class EnvironmentManagerService implements EnvironmentManagerContract
 
         $this->activateFiles();
 
+        if (! $this->getConfig('keep_existing_file_when_missing'))
+            $this->deleteNotExistingFiles();
+
         return true;
     }
 
@@ -202,5 +205,19 @@ class EnvironmentManagerService implements EnvironmentManagerContract
     protected function stripEnvPath($file)
     {
         return str_replace($this->path, '', $file);
+    }
+
+    protected function deleteNotExistingFiles()
+    {
+        $files = $this->getConfig('files');
+
+        collect($files)
+            ->each(function ($file) {
+                if (File::exists($this->path . $file)) {
+                    return;
+                }
+
+                File::delete(base_path($file));
+            });
     }
 }
