@@ -39,7 +39,7 @@ class EnvironmentManagerService implements EnvironmentManagerContract
 
     protected function getConfig($key)
     {
-        return config('laravel-environments.'.$key);
+        return config('environments.'.$key, config('laravel-environments.'.$key));
     }
 
     protected function cannotOverwriteExistingDirectory($overwrite)

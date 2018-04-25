@@ -61,7 +61,7 @@ class CreateCommandTest extends TestCase
     public function overwrite_existing_environment_when_intend_to()
     {
         config([
-            'laravel-environments.clear_directory_when_overwriting' => true,
+            'environments.clear_directory_when_overwriting' => true,
         ]);
 
         $this->executeCreate([
@@ -85,7 +85,7 @@ class CreateCommandTest extends TestCase
     public function overwrite_existing_environment_when_intend_to_but_not_delete_stored_filed_before()
     {
         config([
-            'laravel-environments.clear_directory_when_overwriting' => false,
+            'environments.clear_directory_when_overwriting' => false,
         ]);
 
         $this->executeCreate([
@@ -109,7 +109,7 @@ class CreateCommandTest extends TestCase
     public function created_environment_contains_copied_file()
     {
         config([
-            'laravel-environments.files' => ['.env'],
+            'environments.files' => ['.env'],
         ]);
 
         File::put($this->getBaseDirectory('.env'), 'env content');
@@ -128,7 +128,7 @@ class CreateCommandTest extends TestCase
     public function created_environment_without_overwriting_contains_old_version_of_file()
     {
         config([
-            'laravel-environments.files' => ['.env'],
+            'environments.files' => ['.env'],
         ]);
 
         File::put($this->getBaseDirectory('.env'), 'env content');
@@ -159,7 +159,7 @@ class CreateCommandTest extends TestCase
     public function created_environment_with_overwriting_contains_new_version_of_file()
     {
         config([
-            'laravel-environments.files' => ['.env'],
+            'environments.files' => ['.env'],
         ]);
 
         File::put($this->getBaseDirectory('.env'), 'env content');
@@ -190,7 +190,7 @@ class CreateCommandTest extends TestCase
     public function created_environment_contains_copied_files()
     {
         config([
-            'laravel-environments.files' => [
+            'environments.files' => [
                 '.env',
                 'phpunit.xml',
                 'public/.htaccess',

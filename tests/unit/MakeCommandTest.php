@@ -26,7 +26,7 @@ class MakeCommandTest extends TestCase
     public function overwrite_existing_environment_by_default()
     {
         config([
-            'laravel-environments.clear_directory_when_overwriting' => true,
+            'environments.clear_directory_when_overwriting' => true,
         ]);
 
         $this->executeCreate([

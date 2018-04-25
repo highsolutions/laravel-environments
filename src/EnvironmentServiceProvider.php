@@ -30,10 +30,10 @@ class EnvironmentServiceProvider extends ServiceProvider
 
     private function _basicRegister()
     {
-        $configPath = __DIR__.'/../config/laravel-environments.php';
-        $this->mergeConfigFrom($configPath, 'laravel-environments');
+        $configPath = __DIR__.'/../config/environments.php';
+        $this->mergeConfigFrom($configPath, 'environments');
         $this->publishes([
-            $configPath => config_path('laravel-environments.php'),
+            $configPath => config_path('environments.php'),
         ], 'config');
     }
 

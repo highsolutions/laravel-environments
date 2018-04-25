@@ -24,7 +24,9 @@ Or by adding the following line to the `require` section of your Laravel webapp'
     }
 ```
 
-If you are using Laravel <= 5.4, update `config/app.php` by adding an entry for the service provider:
+And run `composer update` to install the package.
+
+Then, if you are using Laravel <= 5.4, update `config/app.php` by adding an entry for the service provider:
 
 ```php
 'providers' => [
@@ -39,7 +41,7 @@ Optionally, publish the configuration file if you want to change any defaults:
 php artisan vendor:publish --provider="HighSolutions\LaravelEnvironments\EnvironmentServiceProvider"
 ```
 
-Run `composer update` to install the package.
+This will create new file `config/environments.php` with few configuration options for package.
 
 Configuration
 ------------
@@ -129,6 +131,9 @@ vendor/bin/phpunit
 
 Changelog
 ---------
+
+2.2.0
+* Change name of config file from `config/laravel-environments.php` to `config/environments.php`
 
 2.1.0
 * Removing files that are exist in base folder but not exist in environment being set to active

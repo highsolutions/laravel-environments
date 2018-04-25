@@ -17,7 +17,7 @@ abstract class TestCase extends OrchestraTestCase
 
     public function getEnvironmentSetUp($app)
     {
-        $app['config']->set('laravel-environments.path', $this->getTempDirectory());
+        $app['config']->set('environments.path', $this->getTempDirectory());
 
         $app->setBasePath($this->basePath());
     }
@@ -49,12 +49,12 @@ abstract class TestCase extends OrchestraTestCase
     {
         parent::setUp();
 
-        File::cleanDirectory(config('laravel-environments.path'));
+        File::cleanDirectory(config('environments.path'));
     }
 
     public function tearDown()
     {
-        File::cleanDirectory(config('laravel-environments.path'));
+        File::cleanDirectory(config('environments.path'));
     }
 
     public static function assertDirectoryExists($directoryName, $message = ''):void
