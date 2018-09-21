@@ -25,7 +25,7 @@ return [
     'clear_directory_when_overwriting' => false,
 
     /*
-     * Keep existing file in base directory when this file is  
+     * Keep existing file in base directory when this file is
      * not existing in environment that being set as active.
      */
     'keep_existing_file_when_missing' => false,
