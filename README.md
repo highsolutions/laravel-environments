@@ -20,7 +20,7 @@ Or by adding the following line to the `require` section of your Laravel webapp'
 
 ```javascript
     "require": {
-        "HighSolutions/laravel-environments": "2.*"
+        "HighSolutions/laravel-environments": "3.*"
     }
 ```
 
@@ -131,6 +131,9 @@ vendor/bin/phpunit
 
 Changelog
 ---------
+
+3.0.0
+* Laravel 5.8 and 6.0 support
 
 2.2.0
 * Change name of config file from `config/laravel-environments.php` to `config/environments.php`

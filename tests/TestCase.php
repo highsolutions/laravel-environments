@@ -45,14 +45,14 @@ abstract class TestCase extends OrchestraTestCase
         return $this->getTempDirectory('__base__');
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
         File::cleanDirectory(config('environments.path'));
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         File::cleanDirectory(config('environments.path'));
     }
@@ -88,5 +88,10 @@ abstract class TestCase extends OrchestraTestCase
         }
 
         $this->fail("Failed asserting that an array contains '$search'.");
+    }
+
+    public function artisan($command, $params = [])
+    {
+        return \Artisan::call($command, $params);
     }
 }
