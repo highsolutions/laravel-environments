@@ -1,7 +1,7 @@
 Laravel Environments
 ================
 
- ![CircleCI](https://circleci.com/gh/highsolutions/laravel-environments.svg?style=svg) ![StyleCI](https://styleci.io/repos/118597081/shield?branch=master) [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 Easy management of different environments in Laravel projects.
 
@@ -131,6 +131,12 @@ vendor/bin/phpunit
 
 Changelog
 ---------
+
+3.2.0
+* Laravel 8.0 support
+
+3.1.0
+* Laravel 7.0 support
 
 3.0.0
 * Laravel 5.8 and 6.0 support
