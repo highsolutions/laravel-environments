@@ -27,19 +27,19 @@ class RemoveCommandTest extends TestCase
             'name' => 'local',
         ]);
 
-        $this->assertDirectoryNotExists('local');
+        $this->assertDirectoryDoesNotExist('local');
     }
 
     /** @test */
     public function not_remove_not_existing_environment()
     {
-        $this->assertDirectoryNotExists('local');
+        $this->assertDirectoryDoesNotExist('local');
 
         $code = $this->executeRemove([
             'name' => 'local',
         ]);
 
         $this->assertEquals(1, $code);
-        $this->assertDirectoryNotExists('local');
+        $this->assertDirectoryDoesNotExist('local');
     }
 }

@@ -36,14 +36,14 @@ class CopyCommandTest extends TestCase
     /** @test */
     public function not_copy_not_existing_environment()
     {
-        $this->assertDirectoryNotExists('local');
+        $this->assertDirectoryDoesNotExist('local');
 
         $this->executeCopy([
             'old' => 'local',
             'new' => 'production',
         ]);
 
-        $this->assertDirectoryNotExists('production');
+        $this->assertDirectoryDoesNotExist('production');
     }
 
     /** @test */

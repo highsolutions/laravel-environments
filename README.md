@@ -132,6 +132,9 @@ vendor/bin/phpunit
 Changelog
 ---------
 
+3.3.0
+* Laravel 9.0 support
+
 3.2.0
 * Laravel 8.0 support
 
