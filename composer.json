@@ -11,12 +11,12 @@
     "license": "MIT",
     "require": {
         "php": ">=5.4.0|>=8.0.2",
-        "illuminate/console": "5.*|^6.0|^7.0|^8.0|^9.0|^10.0",
-        "illuminate/support": "5.*|^6.0|^7.0|^8.0|^9.0|^10.0"
+        "illuminate/console": "5.*|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
+        "illuminate/support": "5.*|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0""
     },
     "require-dev": {
-        "phpunit/phpunit": "6.*|7.*|8.*|9.*",
-        "orchestra/testbench" : "3.*|4.*|5.*|6.*|7.*|8.*",
+        "phpunit/phpunit": "6.*|7.*|8.*|9.*|10.*|11.*",
+        "orchestra/testbench" : "3.*|4.*|5.*|6.*|7.*|8.*|9.*|10.*",
         "mockery/mockery": "^1.0"
     },
     "autoload": {
@@ -51,7 +51,8 @@
             "Laravel 7.0",
             "Laravel 8.0",
             "Laravel 9.0",
-            "Laravel 10.0"
+            "Laravel 10.0",
+            "Laravel 11.0"
         ],
         "laravel": {
             "providers": [
