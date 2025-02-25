@@ -132,6 +132,9 @@ vendor/bin/phpunit
 Changelog
 ---------
 
+3.6.0
+* Laravel 12.0 support
+
 3.5.0
 * Laravel 11.0 support
 

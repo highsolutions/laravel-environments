@@ -3,6 +3,7 @@
 namespace HighSolutions\LaravelEnvironments\Test;
 
 use Illuminate\Support\Facades\File;
+use PHPUnit\Framework\Attributes\Test;
 
 class CreateCommandTest extends TestCase
 {
@@ -11,7 +12,7 @@ class CreateCommandTest extends TestCase
         return $this->artisan('env:create', $params);
     }
 
-    /** @test */
+    #[Test]
     public function create_new_environment()
     {
         $code = $this->executeCreate([
@@ -19,10 +20,10 @@ class CreateCommandTest extends TestCase
         ]);
 
         $this->assertEquals(0, $code);
-        $this->assertDirectoryExists('local');
+        $this->assertDoesDirectoryExist('local');
     }
 
-    /** @test */
+    #[Test]
     public function create_two_environments()
     {
         $this->executeCreate([
@@ -33,11 +34,11 @@ class CreateCommandTest extends TestCase
             'name' => 'staging',
         ]);
 
-        $this->assertDirectoryExists('local');
-        $this->assertDirectoryExists('staging');
+        $this->assertDoesDirectoryExist('local');
+        $this->assertDoesDirectoryExist('staging');
     }
 
-    /** @test */
+    #[Test]
     public function not_overwrite_existing_environment()
     {
         $this->executeCreate([
@@ -47,7 +48,7 @@ class CreateCommandTest extends TestCase
         $testFile = $this->getTempDirectory('local').'testfile.php';
         File::put($testFile, 'test');
 
-        $this->assertDirectoryExists('local');
+        $this->assertDoesDirectoryExist('local');
 
         $code = $this->executeCreate([
             'name' => 'local',
@@ -57,7 +58,7 @@ class CreateCommandTest extends TestCase
         $this->assertTrue(File::exists($testFile));
     }
 
-    /** @test */
+    #[Test]
     public function overwrite_existing_environment_when_intend_to()
     {
         config([
@@ -71,7 +72,7 @@ class CreateCommandTest extends TestCase
         $testFile = $this->getTempDirectory('local').'testfile.php';
         File::put($testFile, 'test');
 
-        $this->assertDirectoryExists('local');
+        $this->assertDoesDirectoryExist('local');
 
         $code = $this->executeCreate([
             'name' => 'local',
@@ -81,7 +82,7 @@ class CreateCommandTest extends TestCase
         $this->assertFalse(File::exists($testFile));
     }
 
-    /** @test */
+    #[Test]
     public function overwrite_existing_environment_when_intend_to_but_not_delete_stored_filed_before()
     {
         config([
@@ -95,7 +96,7 @@ class CreateCommandTest extends TestCase
         $testFile = $this->getTempDirectory('local').'testfile.php';
         File::put($testFile, 'test');
 
-        $this->assertDirectoryExists('local');
+        $this->assertDoesDirectoryExist('local');
 
         $code = $this->executeCreate([
             'name' => 'local',
@@ -105,7 +106,7 @@ class CreateCommandTest extends TestCase
         $this->assertTrue(File::exists($testFile));
     }
 
-    /** @test **/
+    #[Test]
     public function created_environment_contains_copied_file()
     {
         config([
@@ -124,7 +125,7 @@ class CreateCommandTest extends TestCase
         });
     }
 
-    /** @test **/
+    #[Test]
     public function created_environment_without_overwriting_contains_old_version_of_file()
     {
         config([
@@ -155,7 +156,7 @@ class CreateCommandTest extends TestCase
         });
     }
 
-    /** @test **/
+    #[Test]
     public function created_environment_with_overwriting_contains_new_version_of_file()
     {
         config([
@@ -186,7 +187,7 @@ class CreateCommandTest extends TestCase
         });
     }
 
-    /** @test **/
+    #[Test]
     public function created_environment_contains_copied_files()
     {
         config([

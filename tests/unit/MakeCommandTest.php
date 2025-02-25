@@ -3,6 +3,7 @@
 namespace HighSolutions\LaravelEnvironments\Test;
 
 use Illuminate\Support\Facades\File;
+use PHPUnit\Framework\Attributes\Test;
 
 class MakeCommandTest extends TestCase
 {
@@ -11,7 +12,7 @@ class MakeCommandTest extends TestCase
         return $this->artisan('make:env', $params);
     }
 
-    /** @test */
+    #[Test]
     public function create_new_environment()
     {
         $code = $this->executeCreate([
@@ -19,10 +20,10 @@ class MakeCommandTest extends TestCase
         ]);
 
         $this->assertEquals(0, $code);
-        $this->assertDirectoryExists('local');
+        $this->assertDoesDirectoryExist('local');
     }
 
-    /** @test */
+    #[Test]
     public function overwrite_existing_environment_by_default()
     {
         config([
@@ -36,7 +37,7 @@ class MakeCommandTest extends TestCase
         $testFile = $this->getTempDirectory('local').'testfile.php';
         File::put($testFile, 'test');
 
-        $this->assertDirectoryExists('local');
+        $this->assertDoesDirectoryExist('local');
 
         $this->executeCreate([
             'name' => 'local',

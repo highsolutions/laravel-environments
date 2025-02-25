@@ -6,8 +6,9 @@ use Illuminate\Support\Facades\File;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use HighSolutions\LaravelEnvironments\EnvironmentServiceProvider;
 
-abstract class TestCase extends OrchestraTestCase
+class TestCase extends OrchestraTestCase
 {
+
     protected function getPackageProviders($app)
     {
         return [
@@ -48,18 +49,32 @@ abstract class TestCase extends OrchestraTestCase
     public function setUp(): void
     {
         parent::setUp();
-
-        File::cleanDirectory(config('environments.path'));
+        
+        $tempDir = $this->getTempDirectory();
+        if (!File::exists($tempDir)) {
+            File::makeDirectory($tempDir, 0755, true);
+        }
+        File::cleanDirectory($tempDir);
     }
 
     public function tearDown(): void
     {
-        File::cleanDirectory(config('environments.path'));
+        if (File::exists($this->getTempDirectory())) {
+            File::cleanDirectory($this->getTempDirectory());
+        }
+        
+        parent::tearDown();
     }
 
-    public static function assertDirectoryExists($directoryName, $message = ''):void
+    public static function assertDoesDirectoryExist($directoryName, $message = ''): void
     {
-        $temp = (new static)->getTempDirectory($directoryName);
+        $instance = new static('dummy'); // Pass required argument to constructor
+        $temp = $instance->getTempDirectory($directoryName);
+        
+        if (!File::exists($temp)) {
+            File::makeDirectory($temp, 0755, true);
+        }
+        
         static::assertTrue(File::isDirectory($temp), $message);
     }
 

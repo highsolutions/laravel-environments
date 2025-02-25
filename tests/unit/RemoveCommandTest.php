@@ -2,6 +2,8 @@
 
 namespace HighSolutions\LaravelEnvironments\Test;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class RemoveCommandTest extends TestCase
 {
     protected function executeCreate($params)
@@ -14,14 +16,14 @@ class RemoveCommandTest extends TestCase
         return $this->artisan('env:remove', $params);
     }
 
-    /** @test */
+    #[Test]
     public function remove_existing_environment()
     {
         $this->executeCreate([
             'name' => 'local',
         ]);
 
-        $this->assertDirectoryExists('local');
+        $this->assertDoesDirectoryExist('local');
 
         $this->executeRemove([
             'name' => 'local',
@@ -30,7 +32,7 @@ class RemoveCommandTest extends TestCase
         $this->assertDirectoryDoesNotExist('local');
     }
 
-    /** @test */
+    #[Test]
     public function not_remove_not_existing_environment()
     {
         $this->assertDirectoryDoesNotExist('local');

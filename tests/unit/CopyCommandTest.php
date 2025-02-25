@@ -3,6 +3,7 @@
 namespace HighSolutions\LaravelEnvironments\Test;
 
 use Illuminate\Support\Facades\File;
+use PHPUnit\Framework\Attributes\Test;
 
 class CopyCommandTest extends TestCase
 {
@@ -16,24 +17,24 @@ class CopyCommandTest extends TestCase
         return $this->artisan('env:copy', $params);
     }
 
-    /** @test */
+    #[Test]
     public function copy_existing_environment()
     {
         $this->executeCreate([
             'name' => 'local',
         ]);
 
-        $this->assertDirectoryExists('local');
+        $this->assertDoesDirectoryExist('local');
 
         $this->executeCopy([
             'old' => 'local',
             'new' => 'production',
         ]);
 
-        $this->assertDirectoryExists('production');
+        $this->assertDoesDirectoryExist('production');
     }
 
-    /** @test */
+    #[Test]
     public function not_copy_not_existing_environment()
     {
         $this->assertDirectoryDoesNotExist('local');
@@ -46,7 +47,7 @@ class CopyCommandTest extends TestCase
         $this->assertDirectoryDoesNotExist('production');
     }
 
-    /** @test */
+    #[Test]
     public function not_copy_when_has_to_overwrite_not_intended()
     {
         $this->executeCreate([
@@ -66,12 +67,12 @@ class CopyCommandTest extends TestCase
             '--overwrite' => false,
         ]);
 
-        $this->assertDirectoryExists('staging');
+        $this->assertDoesDirectoryExist('staging');
 
         $this->assertTrue(File::exists($testFile));
     }
 
-    /** @test */
+    #[Test]
     public function copy_when_has_to_overwrite_when_intended()
     {
         $this->executeCreate([
@@ -91,12 +92,12 @@ class CopyCommandTest extends TestCase
             '--overwrite' => true,
         ]);
 
-        $this->assertDirectoryExists('staging');
+        $this->assertDoesDirectoryExist('staging');
 
         $this->assertFalse(File::exists($testFile));
     }
 
-    /** @test **/
+    #[Test]
     public function copy_environment_with_nested_files()
     {
         $this->executeCreate([

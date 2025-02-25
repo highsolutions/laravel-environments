@@ -3,6 +3,7 @@
 namespace HighSolutions\LaravelEnvironments\Test;
 
 use HighSolutions\LaravelEnvironments\Contracts\EnvironmentManagerContract;
+use PHPUnit\Framework\Attributes\Test;
 
 class ListCommandTest extends TestCase
 {
@@ -16,21 +17,21 @@ class ListCommandTest extends TestCase
         return resolve(EnvironmentManagerContract::class)->getList();
     }
 
-    /** @test */
+    #[Test]
     public function list_existing_environment()
     {
         $this->executeCreate([
             'name' => 'local',
         ]);
 
-        $this->assertDirectoryExists('local');
+        $this->assertDoesDirectoryExist('local');
 
         $list = $this->getList();
 
         $this->assertNestedArrayContains('local', $list);
     }
 
-    /** @test */
+    #[Test]
     public function list_existing_many_environments()
     {
         $this->executeCreate([
@@ -41,8 +42,8 @@ class ListCommandTest extends TestCase
             'name' => 'master',
         ]);
 
-        $this->assertDirectoryExists('local');
-        $this->assertDirectoryExists('master');
+        $this->assertDoesDirectoryExist('local');
+        $this->assertDoesDirectoryExist('master');
 
         $list = $this->getList();
 

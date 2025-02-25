@@ -3,6 +3,7 @@
 namespace HighSolutions\LaravelEnvironments\Test;
 
 use Illuminate\Support\Facades\File;
+use PHPUnit\Framework\Attributes\Test;
 
 class SetCommandTest extends TestCase
 {
@@ -16,21 +17,21 @@ class SetCommandTest extends TestCase
         return $this->artisan('env:set', $params);
     }
 
-    /** @test */
+    #[Test]
     public function set_empty_environment()
     {
         $this->executeCreate([
             'name' => 'local1',
         ]);
 
-        $this->assertDirectoryExists('local1');
+        $this->assertDoesDirectoryExist('local1');
 
         $this->executeSet([
             'name' => 'local1',
         ]);
     }
 
-    /** @test **/
+    #[Test]
     public function set_environment_with_one_file()
     {
         config([
@@ -55,7 +56,7 @@ class SetCommandTest extends TestCase
         });
     }
 
-    /** @test **/
+    #[Test]
     public function set_environment_with_multiple_files()
     {
         config([
@@ -98,7 +99,7 @@ class SetCommandTest extends TestCase
         });
     }
 
-    /** @test **/
+    #[Test]
     public function sequentional_environment_activation()
     {
         config([
@@ -138,7 +139,7 @@ class SetCommandTest extends TestCase
         });
     }
 
-    /** @test */
+    #[Test]
     public function set_env_without_one_of_files_and_delete_this_missing_file()
     {
         config([
@@ -178,7 +179,7 @@ class SetCommandTest extends TestCase
         });
     }
 
-    /** @test */
+    #[Test]
     public function set_env_without_one_of_files_and_not_delete_this_missing_file_because_of_config()
     {
         config([
